@@ -15,13 +15,11 @@ import {
   DownloadIcon,
   FileTextIcon,
   GraduationCapIcon,
-  LayersIcon,
   LineChartIcon,
   MonitorIcon,
   MoonStarIcon,
   QuoteIcon,
   RssIcon,
-  SquareDashedIcon,
   SunMediumIcon,
   TextInitialIcon,
   TypeIcon,
@@ -50,8 +48,8 @@ import type { DocPreview } from "@/features/doc/types/document"
 import { SOCIAL_ICONS } from "@/features/portfolio/components/social-link-icons"
 import { SOCIAL_LINKS } from "@/features/portfolio/data/social-links"
 
-import { ChanhDaiMark, getMarkSVG } from "./chanhdai-mark"
-import { getWordmarkSVG } from "./chanhdai-wordmark"
+import { getMarkSVG, KiranMark } from "./kiran-mark"
+import { getWordmarkSVG } from "./kiran-wordmark"
 import {
   FavouriteIcon,
   GridViewIcon,
@@ -92,7 +90,7 @@ const MENU_LINKS: CommandLinkItem[] = [
     title: "Home",
     href: "/",
     kind: "page",
-    icon: <ChanhDaiMark />,
+    icon: <KiranMark />,
     shortcut: "GH",
   },
   {
@@ -117,14 +115,14 @@ const MENU_LINKS: CommandLinkItem[] = [
     shortcut: "GR",
   },
   {
-    title: "Blog",
+    title: "Research & Writing",
     href: "/blog",
     kind: "page",
     icon: <NewsIcon />,
     shortcut: "GL",
   },
   {
-    title: "Sponsors",
+    title: "Collaborate",
     href: "/sponsors",
     kind: "page",
     icon: <FavouriteIcon />,
@@ -159,12 +157,6 @@ const PORTFOLIO_LINKS: CommandLinkItem[] = [
     href: "/#hello",
     kind: "page",
     icon: <TextInitialIcon />,
-  },
-  {
-    title: "Stack",
-    href: "/#stack",
-    kind: "page",
-    icon: <LayersIcon />,
   },
   {
     title: "Experience",
@@ -235,16 +227,11 @@ export function CommandMenu({
   enabledHotkeys?: boolean
 }) {
   const router = useRouter()
-
   const { setTheme } = useTheme()
-
   const [open, setOpen] = useState(false)
-
   const [selectedCommandKind, setSelectedCommandKind] =
     useState<CommandKind | null>(null)
-
   const [click] = useClickSound()
-
   const { success: tiksSuccess } = useTiks()
 
   useHotkeys(
@@ -276,7 +263,7 @@ export function CommandMenu({
         name: "command_menu_action",
         properties: {
           action: "navigate",
-          href: href,
+          href,
           open_in_new_tab: openInNewTab,
         },
       })
@@ -297,7 +284,7 @@ export function CommandMenu({
         name: "command_menu_action",
         properties: {
           action: "copy",
-          text: text,
+          text,
         },
       })
       toast.add({ type: "success", title: message })
@@ -310,15 +297,10 @@ export function CommandMenu({
     (theme: "light" | "dark" | "system") => () => {
       click()
       setOpen(false)
-
       trackEvent({
         name: "command_menu_action",
-        properties: {
-          action: "change_theme",
-          theme: theme,
-        },
+        properties: { action: "change_theme", theme },
       })
-
       setTheme(theme)
     },
     [click, setTheme]
@@ -329,68 +311,52 @@ export function CommandMenu({
       docs
         .filter((doc) => doc.category === "components")
         .sort((a, b) =>
-          a.title.localeCompare(b.title, "en", {
-            sensitivity: "base",
-          })
+          a.title.localeCompare(b.title, "en", { sensitivity: "base" })
         ),
     [docs]
   )
 
   const componentsGroup = useMemo(() => {
-    if (!components || components.length === 0) {
-      return null
-    }
+    if (!components || components.length === 0) return null
 
     return (
       <CommandGroup heading="Components">
-        {components.map((component) => {
-          return (
-            <CommandMenuItem
-              key={component.slug}
-              keywords={["component"]}
-              onHighlight={() => {
-                setSelectedCommandKind("component")
-              }}
-              onSelect={() => {
-                handleOpenLink(`/components/${component.slug}`)
-              }}
-            >
-              <ComponentIcon slug={component.slug} />
-              <p className="line-clamp-1">{component.title}</p>
-            </CommandMenuItem>
-          )
-        })}
+        {components.map((component) => (
+          <CommandMenuItem
+            key={component.slug}
+            keywords={["component"]}
+            onHighlight={() => setSelectedCommandKind("component")}
+            onSelect={() => handleOpenLink(`/components/${component.slug}`)}
+          >
+            <ComponentIcon slug={component.slug} />
+            <p className="line-clamp-1">{component.title}</p>
+          </CommandMenuItem>
+        ))}
       </CommandGroup>
     )
   }, [components, handleOpenLink])
 
   const blocksGroup = useMemo(() => {
-    if (!blocks || blocks.length === 0) {
-      return null
-    }
+    if (!blocks || blocks.length === 0) return null
 
     return (
       <CommandGroup heading="Blocks">
-        {blocks.map((block) => {
-          return (
-            <CommandMenuItem
-              key={block.name}
-              keywords={["block"]}
-              onHighlight={() => {
-                setSelectedCommandKind("block")
-              }}
-              onSelect={() => {
-                handleOpenLink(`/blocks/${block.categories[0]}/${block.name}`)
-              }}
-            >
-              <GridViewIcon />
-              <p className="line-clamp-1">{block.description}</p>
-              <span className="ml-auto font-mono text-xs font-normal text-muted-foreground tabular-nums max-sm:hidden">
-                {block.name}
-              </span>
-            </CommandMenuItem>
-          )
-        })}
+        {blocks.map((block) => (
+          <CommandMenuItem
+            key={block.name}
+            keywords={["block"]}
+            onHighlight={() => setSelectedCommandKind("block")}
+            onSelect={() =>
+              handleOpenLink(`/blocks/${block.categories[0]}/${block.name}`)
+            }
+          >
+            <GridViewIcon />
+            <p className="line-clamp-1">{block.description}</p>
+            <span className="ml-auto font-mono text-xs font-normal text-muted-foreground tabular-nums max-sm:hidden">
+              {block.name}
+            </span>
+          </CommandMenuItem>
+        ))}
       </CommandGroup>
     )
   }, [blocks, handleOpenLink])
@@ -403,40 +369,30 @@ export function CommandMenu({
           title: doc.title,
           href: `/blog/${doc.slug}`,
           kind: "page",
-          keywords: ["blog"],
+          keywords: ["blog", "research", "writing"],
         })),
     [docs]
   )
 
   const bookmarksGroup = useMemo(() => {
-    if (!bookmarks || bookmarks.length === 0) {
-      return null
-    }
+    if (!bookmarks || bookmarks.length === 0) return null
 
     return (
       <CommandGroup heading="Bookmarks">
-        {bookmarks.map((bookmark) => {
-          return (
-            <CommandMenuItem
-              key={bookmark.url}
-              keywords={["bookmark"]}
-              onHighlight={() => {
-                setSelectedCommandKind("bookmark")
-              }}
-              onSelect={() => {
-                trackBookmarkClick({
-                  url: bookmark.url,
-                  surface: "palette",
-                })
-
-                handleOpenLink(getBookmarkExternalHref(bookmark.url), true)
-              }}
-            >
-              <BookmarkIcon />
-              <p className="line-clamp-1">{bookmark.title}</p>
-            </CommandMenuItem>
-          )
-        })}
+        {bookmarks.map((bookmark) => (
+          <CommandMenuItem
+            key={bookmark.url}
+            keywords={["bookmark"]}
+            onHighlight={() => setSelectedCommandKind("bookmark")}
+            onSelect={() => {
+              trackBookmarkClick({ url: bookmark.url, surface: "palette" })
+              handleOpenLink(getBookmarkExternalHref(bookmark.url), true)
+            }}
+          >
+            <BookmarkIcon />
+            <p className="line-clamp-1">{bookmark.title}</p>
+          </CommandMenuItem>
+        ))}
       </CommandGroup>
     )
   }, [bookmarks, handleOpenLink])
@@ -456,9 +412,7 @@ export function CommandMenu({
           setOpen(true)
           trackEvent({
             name: "open_command_menu",
-            properties: {
-              method: "click",
-            },
+            properties: { method: "click" },
           })
         }}
       />
@@ -485,11 +439,10 @@ export function CommandMenu({
             />
 
             {componentsGroup}
-
             {blocksGroup}
 
             <CommandLinkGroup
-              heading="Blog"
+              heading="Research & Writing"
               links={blogLinks}
               fallbackIcon={<NewsIcon />}
               onLinkHighlight={handleLinkHighlight}
@@ -508,42 +461,22 @@ export function CommandMenu({
             <CommandGroup heading="Brand Assets">
               <CommandMenuItem
                 onHighlight={handleCommandHighlight}
-                onSelect={() => {
+                onSelect={() =>
                   handleCopyText(getMarkSVG(), "Mark as SVG copied")
-                }}
+                }
               >
-                <ChanhDaiMark />
+                <KiranMark />
                 Copy Mark as SVG
               </CommandMenuItem>
 
               <CommandMenuItem
                 onHighlight={handleCommandHighlight}
-                onSelect={() => {
+                onSelect={() =>
                   handleCopyText(getWordmarkSVG(), "Logotype as SVG copied")
-                }}
+                }
               >
                 <TypeIcon />
                 Copy Logotype as SVG
-              </CommandMenuItem>
-
-              <CommandMenuItem
-                onHighlight={() => {
-                  setSelectedCommandKind("link")
-                }}
-                onSelect={() => handleOpenLink("/blog/chanhdai-brand")}
-              >
-                <SquareDashedIcon />
-                Brand Guidelines
-              </CommandMenuItem>
-
-              <CommandMenuItem onHighlight={handleCommandHighlight} asChild>
-                <a
-                  href="https://assets.chanhdai.com/chanhdai-brand.zip"
-                  download
-                >
-                  <DownloadIcon />
-                  Download Brand Assets
-                </a>
               </CommandMenuItem>
             </CommandGroup>
 
@@ -601,18 +534,13 @@ function CommandMenuTrigger({ ...props }: React.ComponentProps<typeof Button>) {
       {...props}
     >
       <SearchIcon />
-
       <span className="font-sans text-sm/4 font-medium sm:sr-only">
         Search…
       </span>
-
-      {/* Tablets rarely have a keyboard, and the header has no room for the
-      hint until md. */}
       <KbdGroup className="hidden gap-0.75 md:in-[.os-macos_&]:flex">
         <Kbd className="w-5 min-w-auto">⌘</Kbd>
         <Kbd className="w-5 min-w-auto">K</Kbd>
       </KbdGroup>
-
       <KbdGroup className="hidden gap-0.75 md:not-[.os-macos_&]:flex">
         <Kbd>Ctrl</Kbd>
         <Kbd className="w-5 min-w-auto">K</Kbd>
@@ -629,10 +557,7 @@ function CommandMenuInput() {
       const timeoutId = setTimeout(() => {
         trackEvent({
           name: "command_menu_search",
-          properties: {
-            query: searchValue,
-            query_length: searchValue.length,
-          },
+          properties: { query: searchValue, query_length: searchValue.length },
         })
       }, 500)
 
@@ -695,7 +620,7 @@ function CommandLinkGroup({
   return (
     <CommandGroup heading={heading}>
       {links.map((link) => {
-        const icon = link?.icon ?? fallbackIcon ?? <React.Fragment />
+        const icon = link.icon ?? fallbackIcon ?? <React.Fragment />
 
         return (
           <CommandMenuItem
@@ -704,7 +629,7 @@ function CommandLinkGroup({
             onHighlight={() => onLinkHighlight(link)}
             onSelect={() => onLinkSelect(link.href, link.openInNewTab)}
           >
-            {link?.iconImage ? (
+            {link.iconImage ? (
               <img
                 className="size-4 rounded-sm"
                 src={link.iconImage}
@@ -713,9 +638,7 @@ function CommandLinkGroup({
             ) : (
               icon
             )}
-
             <p className="line-clamp-1">{link.title}</p>
-
             {link.shortcut && (
               <CommandShortcut className="font-mono tracking-[0.2em] max-sm:hidden">
                 {link.shortcut}
@@ -745,10 +668,8 @@ function CommandMenuFooter({
   return (
     <>
       <div className="flex h-10" />
-
       <div className="absolute inset-x-0 bottom-0 flex h-10 items-center justify-between gap-2 rounded-b-2xl px-4 text-xs font-medium">
-        <ChanhDaiMark className="size-6 text-muted-foreground" />
-
+        <KiranMark className="size-6 text-muted-foreground" />
         <div className="flex items-center gap-2 max-sm:hidden">
           <span>{ENTER_ACTION_LABELS[selectedCommandKind ?? "page"]}</span>
           <Kbd>
