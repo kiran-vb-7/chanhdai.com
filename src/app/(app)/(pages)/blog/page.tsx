@@ -16,8 +16,9 @@ import { PostListWithSearch } from "@/features/blog/components/post-list-with-se
 import { PostSearchInput } from "@/features/blog/components/post-search-input"
 import { getBlogPosts } from "@/features/doc/data/documents"
 
-const title = "Blog"
-const description = "Stories, milestones, and things I learn along the way."
+const title = "Research & Writing"
+const description =
+  "Research, publications and notes by Kiran V B across strategy, finance, economics, public policy and intelligence systems."
 
 const ogImage = `/og/simple?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`
 
@@ -39,8 +40,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: X_HANDLE,
-    creator: X_HANDLE,
+    site: X_HANDLE || undefined,
+    creator: X_HANDLE || undefined,
     images: [ogImage],
   },
 }
@@ -80,7 +81,7 @@ export default function Page() {
             href: "/",
           },
           {
-            name: "Blog",
+            name: "Research & Writing",
             href: "/blog",
           },
         ])}
@@ -88,9 +89,9 @@ export default function Page() {
 
       <div className="min-h-svh">
         <PageHeading>
-          <PageHeadingTagline>Blog</PageHeadingTagline>
+          <PageHeadingTagline>Research & Writing</PageHeadingTagline>
           <PageHeadingTitle>
-            Stories, milestones, and things I learn along the way.
+            Research, publications, and ideas worth developing.
           </PageHeadingTitle>
         </PageHeading>
 
