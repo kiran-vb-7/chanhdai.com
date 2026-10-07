@@ -24,8 +24,7 @@ import {
 } from "@/features/bookmark/types"
 
 const title = "Bookmarks"
-const description =
-  "Hand-picked articles, courses, books, and references worth your time."
+const description = "Personal reading and reference bookmarks curated by Kiran V B."
 
 const ogImage = `/og/simple?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`
 
@@ -47,8 +46,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: X_HANDLE,
-    creator: X_HANDLE,
+    site: X_HANDLE || undefined,
+    creator: X_HANDLE || undefined,
     images: [ogImage],
   },
 }
@@ -107,25 +106,31 @@ export default function Page() {
           <PageHeadingTagline>Bookmarks</PageHeadingTagline>
           <PageHeadingTitle>Things worth your time.</PageHeadingTitle>
           <PageHeadingDescription>
-            Hand-picked articles, courses, books, and references.
+            {SORTED_BOOKMARKS.length > 0
+              ? "Personal reading, research and references."
+              : "No personal bookmarks have been published yet."}
           </PageHeadingDescription>
         </PageHeading>
 
-        <div className="h-4" />
+        {SORTED_BOOKMARKS.length > 0 && (
+          <>
+            <div className="h-4" />
 
-        <div className="screen-line-bottom flex h-px screen-line-bottom-border" />
+            <div className="screen-line-bottom flex h-px screen-line-bottom-border" />
 
-        <Suspense fallback={<div className="h-12" />}>
-          <BookmarkFilters />
-        </Suspense>
+            <Suspense fallback={<div className="h-12" />}>
+              <BookmarkFilters />
+            </Suspense>
 
-        <div className="screen-line-top screen-line-bottom screen-line-top-border before:z-1">
-          <div className="stripe-divider" />
-        </div>
+            <div className="screen-line-top screen-line-bottom screen-line-top-border before:z-1">
+              <div className="stripe-divider" />
+            </div>
 
-        <Suspense fallback={<BookmarkList entries={entries} />}>
-          <BookmarkListFiltered entries={entries} />
-        </Suspense>
+            <Suspense fallback={<BookmarkList entries={entries} />}>
+              <BookmarkListFiltered entries={entries} />
+            </Suspense>
+          </>
+        )}
 
         <div className="h-4" />
       </div>
