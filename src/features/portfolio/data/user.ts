@@ -1,65 +1,68 @@
 import type { User } from "@/features/portfolio/types/user"
 
+const GITHUB_AVATAR = "https://avatars.githubusercontent.com/u/328008536?v=4"
+
 export const USER: User = {
-  firstName: "Chánh Đại",
-  lastName: "Nguyễn",
-  displayName: "Chánh Đại",
-  username: "ncdai",
+  firstName: "Kiran",
+  lastName: "V B",
+  displayName: "Kiran V B",
+  username: "kiran-vb-7",
   gender: "male",
-  pronouns: "he/him",
-  bio: "Creating with code. Small details matter.",
+  pronouns: "",
+  bio: "Founder, strategist, finance professional, policy researcher, and product builder working across intelligence systems, AI, finance, economics, and decision-making.",
   flipSentences: [
-    "Creating with code. Small details matter.",
-    "Design Engineer.",
-    "Open source contributor.",
-    "I own a vintage iPhone.",
+    "Building intelligence systems for better decisions.",
+    "Founder & Managing Partner, Limuria Intelligence.",
+    "Building LiOS.",
+    "Strategy, finance, policy, AI and product.",
   ],
-  address: "Ho Chi Minh City, Viet Nam",
-  phoneNumberB64: "Kzg0Nzc3ODg4MTQ4", // E.164 format, base64 encoded (https://t.io.vn/base64-string-converter)
-  emailB64: "ZGFpQGNoYW5oZGFpLmNvbQ==", // base64 encoded
-  website: "https://chanhdai.com",
-  jobTitle: "Design Engineer",
+  address: "India",
+  phoneNumberB64: "",
+  emailB64: "",
+  website: "https://limuriaintelligence.com",
+  jobTitle: "Founder & Managing Partner",
   jobs: [
     {
-      title: "Design Engineer",
-      company: "shadcncraft",
-      website: "https://shadcncraft.com?atp=ncdai",
-      experienceId: "shadcncraft",
+      title: "Founder & Managing Partner",
+      company: "Limuria Intelligence",
+      website: "https://limuriaintelligence.com",
     },
     {
-      title: "Founder",
-      company: "Quaric",
-      website: "https://quaric.com",
-      experienceId: "quaric",
+      title: "Creator & Developer",
+      company: "LiOS Terminal",
+      website: "https://limuriaintelligence.com",
     },
   ],
-  about: `- I’m Chánh Đại (call me Dai) — a Design Engineer with 5+ years of experience, known for pixel-perfect execution and an obsessive attention to detail.
-- Passionate about exploring new technologies and turning ideas into reality through polished, thoughtfully crafted projects.
-- Creator of [chanhdai.com](https://github.com/ncdai/chanhdai.com) (2.2k stars), [React Wheel Picker](https://react-wheel-picker.chanhdai.com) (50k+ weekly downloads, ▲ Vercel OSS Program), and [ZaDark](https://zadark.com) (80k+ downloads, 30k+ users) — peak metrics.
-`,
-  avatar: "https://assets.chanhdai.com/images/chanhdai-avatar-ghibli.webp",
-  avatarSketch: "https://assets.chanhdai.com/images/avatar-sketch.webp",
+  about: `- Founder & Managing Partner at [Limuria Intelligence](https://limuriaintelligence.com), an intelligence-driven consulting venture.
+- Creator & Developer of LiOS Terminal (2025–Present), focused on valuation, portfolio and risk analytics, fixed income, derivatives, macro/FX, data integration and AI-assisted research workflows.
+- MBA in Finance (Major) & Strategy (Minor) from the Indian Institute of Management Sirmaur (2023–2025), after a B.Com. in Corporate Secretaryship from Loyola College Chennai, University of Madras (2015–2018).
+- Experience spans consulting, legislative research, risk management, financial analysis, valuation, public finance and policy research.
+- Published “Assessing the Impact of the 73rd Constitutional Amendment on Panchayati Raj: A Two Decade Retrospective” in IJFMR ([DOI](https://doi.org/g82gr5)).`,
+  avatar: GITHUB_AVATAR,
+  avatarSketch: GITHUB_AVATAR,
   avatarVariants: {
-    lightOff: "https://assets.chanhdai.com/images/avatar-light-off.webp",
-    lightOn: "https://assets.chanhdai.com/images/avatar-light-on.webp",
-    darkOff: "https://assets.chanhdai.com/images/avatar-dark-off.webp",
-    darkOn: "https://assets.chanhdai.com/images/avatar-dark-on.webp",
+    lightOff: GITHUB_AVATAR,
+    lightOn: GITHUB_AVATAR,
+    darkOff: GITHUB_AVATAR,
+    darkOn: GITHUB_AVATAR,
   },
-  ogImage:
-    "https://assets.chanhdai.com/images/screenshot-og-image-dark.png?t=1778602757",
-  namePronunciationUrl: "https://assets.chanhdai.com/audio/chanhdai.mp3",
-  timeZone: "Asia/Ho_Chi_Minh",
+  ogImage: GITHUB_AVATAR,
+  namePronunciationUrl: "",
+  timeZone: "Asia/Kolkata",
   keywords: [
-    "ncdai",
-    "nguyenchanhdai",
-    "nguyen chanh dai",
-    "chanhdai",
-    "chanh dai",
-    "iamncdai",
-    "quaric",
-    "zadark",
-    "nguyễn chánh đại",
-    "chánh đại",
+    "Kiran V B",
+    "Limuria Intelligence",
+    "LiOS",
+    "strategy",
+    "finance",
+    "financial modelling",
+    "valuation",
+    "risk management",
+    "portfolio analytics",
+    "public policy",
+    "public finance",
+    "decision intelligence",
+    "AI",
   ],
-  dateCreated: "2023-10-20", // YYYY-MM-DD
+  dateCreated: "2026-10-07",
 }
