@@ -20,17 +20,15 @@ export function Overview() {
       <h2 className="sr-only">Overview</h2>
 
       <PanelContent className="grid gap-x-4 gap-y-2.5 sm:grid-cols-2">
-        {USER.jobs.map((job, index) => {
-          return (
-            <JobItem
-              key={index}
-              title={job.title}
-              company={job.company}
-              website={job.website}
-              experienceId={job.experienceId}
-            />
-          )
-        })}
+        {USER.jobs.map((job, index) => (
+          <JobItem
+            key={index}
+            title={job.title}
+            company={job.company}
+            website={job.website}
+            experienceId={job.experienceId}
+          />
+        ))}
 
         <IntroItem>
           <IntroItemIcon>
@@ -48,44 +46,13 @@ export function Overview() {
 
         <CurrentLocalTimeItem timeZone={USER.timeZone} />
 
-        <EmailItem emailB64={USER.emailB64} />
-
-        <PhoneItem phoneNumberB64={USER.phoneNumberB64} />
-
-        {/* <IntroItem>
-          <IntroItemIcon>
-            <LinkIcon />
-          </IntroItemIcon>
-          <IntroItemContent>
-            <IntroItemLink
-              href={USER.website}
-              aria-label={`Personal website: ${urlToName(USER.website)}`}
-            >
-              {urlToName(USER.website)}
-            </IntroItemLink>
-          </IntroItemContent>
-        </IntroItem> */}
-
-        {/* <IntroItem>
-          <IntroItemIcon>{getGenderIcon(USER.gender)}</IntroItemIcon>
-          <IntroItemContent aria-label={`Pronouns: ${USER.pronouns}`}>
-            {USER.pronouns}
-          </IntroItemContent>
-        </IntroItem> */}
+        {USER.emailB64 && <EmailItem emailB64={USER.emailB64} />}
+        {USER.phoneNumberB64 && (
+          <PhoneItem phoneNumberB64={USER.phoneNumberB64} />
+        )}
       </PanelContent>
 
       <div className="pointer-events-none absolute inset-y-0 left-1/2 -z-1 w-px -translate-x-2.25 border-r border-dashed border-line max-sm:hidden" />
     </Panel>
   )
 }
-
-// function getGenderIcon(gender: User["gender"]) {
-//   switch (gender) {
-//     case "male":
-//       return <MarsIcon />
-//     case "female":
-//       return <VenusIcon />
-//     case "non-binary":
-//       return <NonBinaryIcon />
-//   }
-// }
