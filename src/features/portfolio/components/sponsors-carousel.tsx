@@ -5,6 +5,10 @@ import { HandwrittenArrow, HandwrittenNote } from "./handwritten-note"
 import { Panel } from "./panel"
 
 export function SponsorsCarousel() {
+  if (SPONSORS.length === 0) {
+    return null
+  }
+
   return (
     <Panel className="@container screen-line-bottom-none screen-line-top-none">
       <div className="pointer-events-none absolute inset-0 -z-1 grid grid-cols-3 *:border-r *:border-dashed *:border-line @2xl:grid-cols-4">
