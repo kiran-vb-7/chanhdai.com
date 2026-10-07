@@ -5,14 +5,8 @@ import { AWARDS } from "./awards"
 import { CERTIFICATIONS } from "./certifications"
 import { INTELLECTUAL_PROPERTY } from "./intellectual-property"
 
-/**
- * Entry keys shown first, in this order, so the strongest items stay above
- * the fold instead of sinking under newer but lesser entries.
- */
-export const RECOGNITION_PINNED_KEYS = [
-  "1b4db7eb-4057-5ddf-91e0-36dec72071f5", // Claude for Open Source Program
-  "05e1c61b-6dc1-11f0-8000-679dd01e0504", // Vercel OSS Program
-]
+/** Strongest verified recognition shown first. */
+export const RECOGNITION_PINNED_KEYS = ["pm-yasasvi-scholarship"]
 
 /**
  * Awards, certifications, and IP registrations merged into one list, newest
@@ -32,7 +26,6 @@ export const RECOGNITION_BY_DATE: RecognitionEntry[] = [
     credential,
   })),
   ...INTELLECTUAL_PROPERTY.map((credential) => ({
-    // IP entries already name their registration kind for the icon lookup.
     kind:
       credential.issuerIconName === "copyright"
         ? ("copyright" as const)
