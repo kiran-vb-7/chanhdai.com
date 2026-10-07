@@ -1,44 +1,11 @@
 import type { SocialProfile } from "@/features/portfolio/types/social-links"
 
-/**
- * Keyed registry of social profiles — the single source of truth. Icons are
- * bound separately in `social-link-icons.tsx` (keyed by the same `SocialName`),
- * so adding a profile here forces the icon map to stay in sync at compile time.
- */
+/** Public social profiles for Kiran V B. */
 export const SOCIAL = {
-  x: {
-    title: "X",
-    handle: "@iamncdai",
-    href: "https://x.com/iamncdai",
-    sameAs: true,
-  },
   github: {
     title: "GitHub",
-    handle: "ncdai",
-    href: "https://github.com/ncdai",
-    sameAs: true,
-  },
-  linkedin: {
-    title: "LinkedIn",
-    handle: "ncdai",
-    href: "https://linkedin.com/in/ncdai",
-    sameAs: true,
-  },
-  // dailydotdev: {
-  //   title: "daily.dev",
-  //   handle: "@ncdai",
-  //   href: "https://app.daily.dev/ncdai",
-  //   sameAs: true,
-  // },
-  discord: {
-    title: "Discord",
-    handle: "ncdai",
-    href: "https://discord.com/users/1186630645443739651",
-  },
-  youtube: {
-    title: "YouTube",
-    handle: "@ncdai",
-    href: "https://www.youtube.com/@ncdai",
+    handle: "kiran-vb-7",
+    href: "https://github.com/kiran-vb-7",
     sameAs: true,
   },
 } satisfies Record<string, SocialProfile>
