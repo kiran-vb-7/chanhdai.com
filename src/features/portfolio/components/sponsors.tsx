@@ -29,13 +29,10 @@ export function Sponsors() {
   return (
     <Panel id={ID} className="screen-line-bottom-none">
       <PanelHeader>
-        <PanelTitle>
-          Backed by
-          <span className="block sm:hidden" /> the community
-        </PanelTitle>
+        <PanelTitle>Collaborate</PanelTitle>
 
         <PanelDescription>
-          Grateful to the sponsors who make this open-source work possible.
+          Open to relevant consulting, research, product and intelligence-system collaboration.
         </PanelDescription>
       </PanelHeader>
 
@@ -62,7 +59,7 @@ export function Sponsors() {
             <SponsorItem
               className="h-full min-h-22.5"
               href={SPONSORSHIP_URL}
-              aria-label="Sponsor my work"
+              aria-label="Collaborate with Kiran V B"
             >
               <PlusIcon
                 className="flex size-full items-center justify-center text-muted-foreground"
@@ -82,7 +79,7 @@ export function Sponsors() {
           nativeButton={false}
           render={<Link href="/sponsors" />}
         >
-          All sponsors
+          Collaboration
           <ArrowRightIcon />
         </Button>
       </div>
