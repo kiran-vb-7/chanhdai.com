@@ -21,9 +21,9 @@ import type {
 } from "@/features/sponsor/types"
 import { SPONSOR_TIERS } from "@/features/sponsor/types"
 
-const title = "Sponsors"
+const title = "Collaboration"
 const description =
-  "Grateful to the sponsors who make this open-source work possible."
+  "Consulting, research, product and intelligence-system collaboration with Kiran V B."
 
 const ogImage = `/og/simple?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`
 
@@ -45,8 +45,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: X_HANDLE,
-    creator: X_HANDLE,
+    site: X_HANDLE || undefined,
+    creator: X_HANDLE || undefined,
     images: [ogImage],
   },
 }
@@ -72,7 +72,7 @@ export default function Page() {
             href: "/",
           },
           {
-            name: "Sponsors",
+            name: "Collaboration",
             href: "/sponsors",
           },
         ])}
@@ -80,10 +80,10 @@ export default function Page() {
 
       <div>
         <PageHeading>
-          <PageHeadingTagline>Sponsors</PageHeadingTagline>
-          <PageHeadingTitle>Backed by the community.</PageHeadingTitle>
+          <PageHeadingTagline>Collaboration</PageHeadingTagline>
+          <PageHeadingTitle>Work together.</PageHeadingTitle>
           <PageHeadingDescription>
-            Grateful to the sponsors who make this open-source work possible.
+            Open to relevant consulting, research, product and intelligence-system collaboration through Limuria Intelligence.
           </PageHeadingDescription>
         </PageHeading>
 
@@ -107,7 +107,7 @@ export default function Page() {
             nativeButton={false}
             render={<a href={SPONSORSHIP_URL} target="_blank" rel="noopener" />}
           >
-            Sponsor my work
+            Visit Limuria Intelligence
             <ArrowUpRightIcon />
           </Button>
         </div>
@@ -118,7 +118,6 @@ export default function Page() {
   )
 }
 
-// Logos share a 320x96 viewBox, so min-height follows the logo width.
 const GRID_LAYOUTS: Record<
   SponsorTierColumns,
   { grid: string; guides: string[]; rowStart: string; item: string }
