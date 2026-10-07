@@ -1,9 +1,9 @@
 {
-  "name": "Kiran V B",
   "short_name": "Kiran V B",
+  "name": "Kiran V B",
   "description": "Founder, strategist, finance professional, policy researcher, and product builder.",
-  "start_url": "/",
+  "id": "/?utm_source=pwa",
+  "start_url": "/?utm_source=pwa",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff"
+  "scope": "/"
 }
