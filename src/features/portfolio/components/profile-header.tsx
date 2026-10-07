@@ -1,16 +1,15 @@
 import { USER } from "@/features/portfolio/data/user"
 
-import { ChanhDaiMarkIsometric } from "./chanhdai-mark-isometric"
 import { FlipSentences } from "./flip-sentences"
 import { HandwrittenArrow, HandwrittenNote } from "./handwritten-note"
+import { KiranMarkIsometric } from "./kiran-mark-isometric"
 import { PronounceMyName } from "./pronounce-my-name"
-import { VerifiedIcon } from "./verified-icon"
 
 export function ProfileHeader() {
   return (
     <div className="screen-line-bottom grid grid-cols-[auto_1fr] grid-rows-[1fr_auto] overflow-y-clip border-x screen-line-bottom-border after:z-1">
       <figure className="relative col-span-2 p-2 sm:col-span-1 sm:col-start-2 sm:p-4">
-        <ChanhDaiMarkIsometric />
+        <KiranMarkIsometric />
 
         {/* w-36 needs ~1088px before the gutter can hold it without clipping,
             and the mark ignores coarse pointers, so nothing to annotate there. */}
@@ -38,22 +37,16 @@ export function ProfileHeader() {
               <img
                 className="block size-full rounded-[inherit] object-cover select-none dark:hidden"
                 src={USER.avatarSketch}
-                alt="Avatar with sketch style in light mode"
+                alt="Kiran V B avatar"
               />
               <img
                 className="hidden size-full rounded-[inherit] object-cover select-none dark:block"
                 src={USER.avatar}
-                alt="Avatar in dark mode"
+                alt="Kiran V B avatar"
               />
               <div className="pointer-events-none absolute inset-0 rounded-[inherit] inset-ring-1 inset-ring-foreground/30 dark:inset-ring-foreground/10" />
             </div>
           </div>
-          {/* <AvatarLightsToggle className="group/avatar-lights-toggle mx-0.5 my-0.75 flex outline-none">
-            <AvatarLights
-              className="ring-border ring-offset-background group-focus-visible/avatar-lights-toggle:ring-1 group-focus-visible/avatar-lights-toggle:ring-offset-2"
-              variants={USER.avatarVariants}
-            />
-          </AvatarLightsToggle> */}
         </div>
       </div>
 
@@ -63,8 +56,6 @@ export function ProfileHeader() {
             <h1 className="-translate-y-px text-[2rem]/none font-medium tracking-tight">
               {USER.displayName}
             </h1>
-
-            <VerifiedIcon className="size-4.5 select-none" aria-hidden />
 
             {USER.namePronunciationUrl && (
               <PronounceMyName
